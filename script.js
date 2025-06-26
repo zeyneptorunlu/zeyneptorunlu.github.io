@@ -1,29 +1,101 @@
 
 const sampleMeals = [
   {
-    title: "Grilled Chicken Bowl",
+    id: 1,
+    name: "Grilled Chicken Bowl",
     description: "High-protein grilled chicken with quinoa and mixed greens.",
+    category: "lunch",
+    difficulty: "easy",
+    servings: 2,
     calories: 520,
     protein: 45,
-    tags: ["High Protein", "Gluten-Free", "Quick Prep"],
-    imageUrl: "https://source.unsplash.com/featured/?grilled,chicken,healthy",
+    cookingTime: 30,
+    imageUrl: "https://source.unsplash.com/800x600/?grilled,chicken,healthy"
   },
   {
-    title: "Vegan Buddha Bowl",
+    id: 2,
+    name: "Vegan Buddha Bowl",
     description: "Colorful vegetables, chickpeas, and tahini dressing.",
+    category: "lunch",
+    difficulty: "medium",
+    servings: 1,
     calories: 450,
     protein: 20,
-    tags: ["Vegan", "Fiber-Rich", "Gluten-Free"],
-    imageUrl: "https://source.unsplash.com/featured/?vegan,buddha,bowl",
+    cookingTime: 25,
+    imageUrl: "https://source.unsplash.com/800x600/?vegan,buddha,bowl"
   },
   {
-    title: "Avocado Toast & Eggs",
+    id: 3,
+    name: "Avocado Toast & Eggs",
     description: "Whole grain toast with smashed avocado and poached eggs.",
+    category: "breakfast",
+    difficulty: "easy",
+    servings: 1,
     calories: 380,
     protein: 18,
-    tags: ["Vegetarian", "Quick", "Low Sugar"],
-    imageUrl: "https://source.unsplash.com/featured/?avocado,toast,eggs",
+    cookingTime: 10,
+    imageUrl: "https://source.unsplash.com/800x600/?avocado,toast,eggs"
   },
+  {
+    id: 4,
+    name: "Salmon with Asparagus",
+    description: "Oven-baked salmon served with grilled asparagus and lemon.",
+    category: "dinner",
+    difficulty: "medium",
+    servings: 2,
+    calories: 500,
+    protein: 40,
+    cookingTime: 35,
+    imageUrl: "https://source.unsplash.com/800x600/?salmon,asparagus,dinner"
+  },
+  {
+    id: 5,
+    name: "Tofu Stir Fry",
+    description: "Crispy tofu with mixed bell peppers and soy sauce.",
+    category: "dinner",
+    difficulty: "easy",
+    servings: 2,
+    calories: 420,
+    protein: 30,
+    cookingTime: 20,
+    imageUrl: "https://source.unsplash.com/800x600/?tofu,stirfry,vegetables"
+  },
+  {
+    id: 6,
+    name: "Overnight Oats",
+    description: "Oats soaked overnight with chia, almond milk and berries.",
+    category: "breakfast",
+    difficulty: "easy",
+    servings: 1,
+    calories: 300,
+    protein: 12,
+    cookingTime: 5,
+    imageUrl: "https://source.unsplash.com/800x600/?overnight,oats,berries"
+  },
+  {
+    id: 7,
+    name: "Turkey Wrap",
+    description: "Whole wheat wrap with turkey breast and veggies.",
+    category: "snack",
+    difficulty: "easy",
+    servings: 1,
+    calories: 320,
+    protein: 25,
+    cookingTime: 10,
+    imageUrl: "https://source.unsplash.com/800x600/?turkey,wrap,sandwich"
+  },
+  {
+    id: 8,
+    name: "Banana Protein Smoothie",
+    description: "A quick blend of banana, protein powder, and almond milk.",
+    category: "snack",
+    difficulty: "easy",
+    servings: 1,
+    calories: 250,
+    protein: 22,
+    cookingTime: 5,
+    imageUrl: "https://source.unsplash.com/800x600/?banana,smoothie,protein"
+  }
 ];
 
 
@@ -58,28 +130,103 @@ const modalCloseBtn = document.getElementById('modalCloseBtn');\
 const API_BASE = '';\
 \
 // Sample meals data (fallback for recent meals)\
-const sampleMeals = [\
-    \{\
-        id: 1,\
-        name: "Mediterranean Bowl",\
-        cookingTime: 25,\
-        imageUrl: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200",\
-        lastMade: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()\
-    \},\
-    \{\
-        id: 2,\
-        name: "Protein Smoothie",\
-        cookingTime: 5,\
-        imageUrl: "https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200",\
-        lastMade: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()\
-    \},\
-    \{\
-        id: 3,\
-        name: "Avocado Toast",\
-        cookingTime: 10,\
-        imageUrl: "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200",\
-        lastMade: new Date(Date.now() - 0.5 * 24 * 60 * 60 * 1000).toISOString()\
-    \}\
+const sampleMeals = [
+  {
+    id: 1,
+    name: "Grilled Chicken Bowl",
+    description: "High-protein grilled chicken with quinoa and mixed greens.",
+    category: "lunch",
+    difficulty: "easy",
+    servings: 2,
+    calories: 520,
+    protein: 45,
+    cookingTime: 30,
+    imageUrl: "https://source.unsplash.com/800x600/?grilled,chicken,healthy"
+  },
+  {
+    id: 2,
+    name: "Vegan Buddha Bowl",
+    description: "Colorful vegetables, chickpeas, and tahini dressing.",
+    category: "lunch",
+    difficulty: "medium",
+    servings: 1,
+    calories: 450,
+    protein: 20,
+    cookingTime: 25,
+    imageUrl: "https://source.unsplash.com/800x600/?vegan,buddha,bowl"
+  },
+  {
+    id: 3,
+    name: "Avocado Toast & Eggs",
+    description: "Whole grain toast with smashed avocado and poached eggs.",
+    category: "breakfast",
+    difficulty: "easy",
+    servings: 1,
+    calories: 380,
+    protein: 18,
+    cookingTime: 10,
+    imageUrl: "https://source.unsplash.com/800x600/?avocado,toast,eggs"
+  },
+  {
+    id: 4,
+    name: "Salmon with Asparagus",
+    description: "Oven-baked salmon served with grilled asparagus and lemon.",
+    category: "dinner",
+    difficulty: "medium",
+    servings: 2,
+    calories: 500,
+    protein: 40,
+    cookingTime: 35,
+    imageUrl: "https://source.unsplash.com/800x600/?salmon,asparagus,dinner"
+  },
+  {
+    id: 5,
+    name: "Tofu Stir Fry",
+    description: "Crispy tofu with mixed bell peppers and soy sauce.",
+    category: "dinner",
+    difficulty: "easy",
+    servings: 2,
+    calories: 420,
+    protein: 30,
+    cookingTime: 20,
+    imageUrl: "https://source.unsplash.com/800x600/?tofu,stirfry,vegetables"
+  },
+  {
+    id: 6,
+    name: "Overnight Oats",
+    description: "Oats soaked overnight with chia, almond milk and berries.",
+    category: "breakfast",
+    difficulty: "easy",
+    servings: 1,
+    calories: 300,
+    protein: 12,
+    cookingTime: 5,
+    imageUrl: "https://source.unsplash.com/800x600/?overnight,oats,berries"
+  },
+  {
+    id: 7,
+    name: "Turkey Wrap",
+    description: "Whole wheat wrap with turkey breast and veggies.",
+    category: "snack",
+    difficulty: "easy",
+    servings: 1,
+    calories: 320,
+    protein: 25,
+    cookingTime: 10,
+    imageUrl: "https://source.unsplash.com/800x600/?turkey,wrap,sandwich"
+  },
+  {
+    id: 8,
+    name: "Banana Protein Smoothie",
+    description: "A quick blend of banana, protein powder, and almond milk.",
+    category: "snack",
+    difficulty: "easy",
+    servings: 1,
+    calories: 250,
+    protein: 22,
+    cookingTime: 5,
+    imageUrl: "https://source.unsplash.com/800x600/?banana,smoothie,protein"
+  }
 ];\
 \
 // Utility Functions\
