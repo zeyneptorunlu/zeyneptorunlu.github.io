@@ -1,3 +1,32 @@
+
+const sampleMeals = [
+  {
+    title: "Grilled Chicken Bowl",
+    description: "High-protein grilled chicken with quinoa and mixed greens.",
+    calories: 520,
+    protein: 45,
+    tags: ["High Protein", "Gluten-Free", "Quick Prep"],
+    imageUrl: "https://source.unsplash.com/featured/?grilled,chicken,healthy",
+  },
+  {
+    title: "Vegan Buddha Bowl",
+    description: "Colorful vegetables, chickpeas, and tahini dressing.",
+    calories: 450,
+    protein: 20,
+    tags: ["Vegan", "Fiber-Rich", "Gluten-Free"],
+    imageUrl: "https://source.unsplash.com/featured/?vegan,buddha,bowl",
+  },
+  {
+    title: "Avocado Toast & Eggs",
+    description: "Whole grain toast with smashed avocado and poached eggs.",
+    calories: 380,
+    protein: 18,
+    tags: ["Vegetarian", "Quick", "Low Sugar"],
+    imageUrl: "https://source.unsplash.com/featured/?avocado,toast,eggs",
+  },
+];
+
+
 {\rtf1\ansi\ansicpg1252\cocoartf2822
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
