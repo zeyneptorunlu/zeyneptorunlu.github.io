@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- TARİF VERİTABANI ---
+    // --- GENİŞLETİLMİŞ TARİF VERİTABANI ---
     const recipes = {
         highProteinSnack: [
             {
@@ -8,9 +8,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 recipe: '<h3>Tarif:</h3><p>Bir kaseye süzme yoğurt koyun. Üzerine bir avuç badem, ceviz ve taze yaban mersini ekleyin. İsteğe bağlı olarak bir çay kaşığı bal gezdirin.</p>'
             },
             {
-                name: 'Fırında Nohut Gevreği (Falafel Tadında)',
+                name: 'Fırında Nohut Gevreği',
                 diets: ['vegan', 'vegetarian', 'gluten-free'],
                 recipe: '<h3>Tarif:</h3><p>Haşlanmış bir kutu nohutu kurulayın. Üzerine zeytinyağı, kimyon, kırmızı biber ve tuz ekleyip karıştırın. 200°C fırında 20-25 dakika çıtır olana kadar pişirin.</p>'
+            },
+            {
+                name: 'Haşlanmış Yumurta ve Avokado',
+                diets: ['vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>2 adet katı haşlanmış yumurtayı dilimleyin. Yanında çeyrek avokado dilimleri ve üzerine serpilmiş karabiber ile servis yapın.</p>'
+            },
+            {
+                name: 'Tuzlu Edamame',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Donmuş edamameleri paketin üzerindeki talimatlara göre haşlayın veya buharda pişirin. Üzerine bolca deniz tuzu serpip servis yapın.</p>'
+            },
+            {
+                name: 'Lor Peyniri ve Meyve',
+                diets: ['vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Bir kaseye yağsız lor peyniri koyun. Üzerini taze çilek, şeftali dilimleri veya sevdiğiniz başka bir meyveyle süsleyin.</p>'
+            },
+            {
+                name: 'Ton Balıklı Salatalık Kanepeleri',
+                diets: ['gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Bir salatalığı kalın dilimler halinde kesin. Bir kapta konserve ton balığını az miktarda mayonez veya yoğurtla karıştırın. Karışımı salatalık dilimlerinin üzerine paylaştırın.</p>'
+            },
+            {
+                name: 'Protein Smoothie',
+                diets: ['vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Blender\'a 1 su bardağı süt (veya badem sütü), 1 ölçek protein tozu, yarım muz ve bir avuç ıspanak ekleyip pürüzsüz olana kadar karıştırın.</p>'
             }
         ],
         lightSnack: [
@@ -23,6 +48,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: 'Caprese Çubukları',
                 diets: ['vegetarian', 'gluten-free'],
                 recipe: '<h3>Tarif:</h3><p>Çeri domatesleri, küçük mozzarella toplarını ve taze fesleğen yapraklarını küçük çubuklara sırayla dizin. Üzerine zeytinyağı ve balzamik sirke gezdirin.</p>'
+            },
+            {
+                name: 'Elma Dilimleri ve Fıstık Ezmesi',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Bir elmayı dilimleyin. Yanında 1-2 yemek kaşığı şekersiz fıstık ezmesi ile servis yapın.</p>'
+            },
+            {
+                name: 'Pirinç Patlağı ve Humus',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>2 adet tam tahıllı pirinç patlağının üzerine bolca humus sürün. Üzerine salatalık dilimleri ekleyebilirsiniz.</p>'
+            },
+            {
+                name: 'Kuru Meyve ve Birkaç Kare Bitter Çikolata',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>3-4 adet kuru kayısı veya hurma ile %70 kakao oranlı 2 kare bitter çikolatayı birlikte tüketin.</p>'
+            },
+            {
+                name: 'Yoğurtlu Salatalık Dilimleri',
+                diets: ['vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Bir kase yoğurdun içine ince kıyılmış dereotu, nane ve biraz tuz ekleyip karıştırın. Salatalık dilimlerini bu sosa batırarak yiyin.</p>'
+            },
+            {
+                name: 'Bir Avuç Zeytin',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Basit ama tatmin edici. Bir avuç (yaklaşık 10-12 adet) sevdiğiniz türden zeytin. Yanında bir dilim peynir veya birkaç ceviz de olabilir.</p>'
             }
         ],
         regularMeal: [
@@ -35,6 +85,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: 'Mercimekli Vegan Köfte',
                 diets: ['vegan', 'vegetarian'],
                 recipe: '<h3>Tarif:</h3><p>1 su bardağı kırmızı mercimeği haşlayıp süzün. İnce doğranmış soğan, maydanoz, galeta unu (veya yulaf), kimyon ve tuzu ekleyip yoğurun. Köfte şekli verip az yağda veya fırında pişirin.</p>'
+            },
+            {
+                name: 'Klasik Menemen',
+                diets: ['vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Soğanı ve biberleri zeytinyağında kavurun. Rendelenmiş domatesleri ekleyip suyunu çekene kadar pişirin. Son olarak yumurtaları kırın ve karıştırarak pişirin. Üzerine maydanoz serpin.</p>'
+            },
+            {
+                name: 'Nohutlu ve Ispanaklı Vegan Köri',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Bir tencerede soğan ve sarımsağı soteleyin. Köri tozu ve zerdeçal ekleyin. Haşlanmış nohut, bir kutu konserve domates ve bir kutu hindistan cevizi sütü ekleyip kaynatın. En son taze ıspanakları ekleyip solana kadar pişirin. Pirinçle servis yapın.</p>'
+            },
+            {
+                name: 'Fırında Peynirli Makarna',
+                diets: ['vegetarian'],
+                recipe: '<h3>Tarif:</h3><p>Makarnayı haşlayıp süzün. Beşamel sos hazırlayın ve rendelenmiş kaşar peynirinin bir kısmını sosa ekleyin. Makarna ile sosu karıştırıp fırın kabına dökün. Üzerine kalan peyniri serpip 190°C fırında üzeri kızarana kadar pişirin.</p>'
+            },
+            {
+                name: 'Zeytinyağlı Biber Dolma',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>İç harcı için pirinç, soğan, kuş üzümü, fıstık, nane ve tuzu karıştırın. Biberlerin içini doldurun ve tencereye dizin. Üzerine zeytinyağı ve sıcak su gezdirip kısık ateşte pirinçler yumuşayana kadar pişirin.</p>'
+            },
+            {
+                name: 'Mantarlı Risotto',
+                diets: ['vegetarian'],
+                recipe: '<h3>Tarif:</h3><p>Arborio pirincini soğanla birlikte soteleyin. Yavaş yavaş sıcak sebze suyu ekleyerek ve sürekli karıştırarak pirinci pişirin. Ayrı bir tavada sotelediğiniz mantarları ve en son parmesan peynirini ekleyip karıştırın.</p>'
             }
         ],
         lowCalorieMeal: [
@@ -47,6 +122,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: 'Kinoalı ve Nohutlu Salata',
                 diets: ['vegan', 'vegetarian', 'gluten-free'],
                 recipe: '<h3>Tarif:</h3><p>Haşlanmış kinoa, haşlanmış nohut, doğranmış salatalık, domates ve taze naneyi bir kapta karıştırın. Sosu için zeytinyağı, limon suyu ve tuzu karıştırıp üzerine gezdirin.</p>'
+            },
+            {
+                name: 'Tavuklu Marul Dürüm (Lettuce Wraps)',
+                diets: ['gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Kıyılmış tavuk göğsünü soya sosu, zencefil ve sarımsak ile soteleyin. İçine doğranmış su kestanesi ve yeşil soğan ekleyin. Karışımı büyük marul yapraklarının içine doldurarak servis yapın.</p>'
+            },
+            {
+                name: 'Bol Sebzeli Mercimek Çorbası',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Soğan, havuç ve kerevizi doğrayıp tencerede soteleyin. Kırmızı mercimek, sebze suyu ve domates salçası ekleyip mercimekler yumuşayana kadar pişirin. Blenderdan geçirin ve üzerine nane gezdirin.</p>'
+            },
+            {
+                name: 'Kabak Spagetti (Zoodles) ve Domates Sosu',
+                diets: ['vegan', 'vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Kabakları spiral doğrayıcı ile spagetti şekline getirin. Ayrı bir yerde sarımsak, domates ve fesleğen ile hafif bir sos hazırlayın. Kabakları 1-2 dakika soteleyin ve sos ile karıştırarak servis yapın.</p>'
+            },
+            {
+                name: 'Fırında Limonlu ve Kekikli Tavuk But',
+                diets: ['gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Tavuk butlarının üzerine zeytinyağı, limon suyu, taze kekik, tuz ve karabiber sürün. Fırın tepsisine dizip 200°C fırında yaklaşık 35-40 dakika pişirin. Yanında bol yeşillikli bir salata ile servis edin.</p>'
+            },
+            {
+                name: 'Ispanaklı ve Mantarlı Omlet',
+                diets: ['vegetarian', 'gluten-free'],
+                recipe: '<h3>Tarif:</h3><p>Bir tavada mantarları ve ıspanakları soteleyin. Ayrı bir kapta 2 yumurta (veya 4 yumurta beyazı) çırpın. Sebzelerin üzerine dökün ve kısık ateşte pişirin. Yarısı piştiğinde üzerine biraz lor peyniri serpip ikiye katlayın.</p>'
             }
         ]
     };
@@ -99,11 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Önce diyete uygun tarifleri filtrele
         let filteredRecipes = potentialRecipes.filter(recipe => diet === 'none' || recipe.diets.includes(diet));
         
-        // Eğer diyete uygun tarif bulunamazsa, o kategorideki tüm tarifleri kullan ama bir not düş
+        // Eğer seçilen diyete uygun tarif bulunamazsa, kullanıcıya bir mesaj göster.
         if (filteredRecipes.length === 0) {
-            // Bu senaryoda vegan seçilip vegan tarif bulunamasaydı yaşanırdı. Bizim datamızda var.
-            // Ama yine de bir güvenlik önlemi olarak burada dursun.
-            filteredRecipes = potentialRecipes; 
+            showError(`Maalesef, seçtiğiniz diyet (${diet}) için bu kategoride uygun bir tarif bulunamadı. Lütfen farklı bir diyet seçin veya hedef değiştirin.`);
+            return;
         }
         
         // Rastgele bir tarif seç
