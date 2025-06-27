@@ -1,54 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Meal Planner</title>
+    <title>Akıllı Yemek Planlayıcı</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <main class="planner-container">
         <header>
-            <h1>Smart Meal Planner</h1>
-            <p>Answer a few questions to get your personalized meal suggestion.</p>
+            <h1>Akıllı Yemek Planlayıcı</h1>
+            <p>Kişiselleştirilmiş yemek öneriniz için birkaç soruyu yanıtlayın.</p>
         </header>
 
         <form id="meal-form">
             <div class="form-group">
-                <label for="dietary-restriction">1. Do you have any dietary restrictions? (e.g., Vegan, Gluten-Free)</label>
-                <input type="text" id="dietary-restriction" placeholder="e.g., Vegetarian" autocomplete="off">
+                <label for="dietary-restriction">1. Bir diyet kısıtlamanız var mı?</label>
+                <select id="dietary-restriction">
+                    <option value="none">Yok</option>
+                    <option value="vegetarian">Vejetaryen</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="gluten-free">Glutensiz</option>
+                </select>
             </div>
 
             <div class="form-group">
-                <p>2. Are the necessary ingredients available at home?</p>
+                <p>2. Gerekli malzemeler evde mevcut mu?</p>
                 <div class="radio-group">
-                    <label><input type="radio" name="ingredients" value="yes"> Yes</label>
-                    <label><input type="radio" name="ingredients" value="no"> No</label>
+                    <label><input type="radio" name="ingredients" value="yes"> Evet</label>
+                    <label><input type="radio" name="ingredients" value="no"> Hayır</label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="time-available">3. How much time do you have? (in minutes)</label>
-                <input type="number" id="time-available" min="0" placeholder="e.g., 30">
+                <label for="time-available">3. Ne kadar zamanınız var? (dakika)</label>
+                <input type="number" id="time-available" min="0" placeholder="Örn: 30">
             </div>
 
             <div class="form-group">
-                <p>4. What is your current nutrition goal?</p>
+                <p>4. Beslenme hedefiniz nedir?</p>
                 <div class="radio-group">
-                    <label><input type="radio" name="goal" value="high-protein"> High-Protein</label>
-                    <label><input type="radio" name="goal" value="low-calorie"> Low-Calorie</label>
-                    <label><input type="radio" name="goal" value="none"> No Specific Goal</label>
+                    <label><input type="radio" name="goal" value="high-protein"> Yüksek Protein</label>
+                    <label><input type="radio" name="goal" value="low-calorie"> Düşük Kalori</label>
+                    <label><input type="radio" name="goal" value="none"> Özel Bir Hedefim Yok</label>
                 </div>
             </div>
 
-            <button type="submit" id="submit-btn">Get Recommendation</button>
+            <button type="submit" id="submit-btn">Öneri Al</button>
         </form>
 
         <div id="result-container" class="hidden">
             <h2 id="result-title"></h2>
-            <p id="result-description"></p>
-            <ul id="result-list"></ul>
+            <div id="result-content"></div>
         </div>
 
     </main>
