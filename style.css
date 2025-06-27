@@ -166,9 +166,11 @@ button[type="submit"]:hover {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    display: none; /* Başlangıçta gizli */
 }
 
 #result-container.visible {
+    display: block;
     opacity: 1;
     transform: translateY(0);
 }
@@ -183,6 +185,7 @@ button[type="submit"]:hover {
     color: var(--secondary-color);
 }
 #result-content ul { list-style-position: inside; }
+#result-content p { line-height: 1.6; }
 
 /* --- MODAL (TÜM TARİFLER) STİLLERİ --- */
 .modal-overlay {
@@ -198,6 +201,7 @@ button[type="submit"]:hover {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s;
+    z-index: 1000;
 }
 
 .modal-overlay:not(.hidden) {
@@ -251,7 +255,6 @@ button[type="submit"]:hover {
     background-color: var(--background-color);
     cursor: pointer;
 }
-
 
 /* --- RESPONSIVE TASARIM --- */
 @media (max-width: 680px) {
