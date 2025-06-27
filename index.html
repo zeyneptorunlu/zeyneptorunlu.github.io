@@ -1,237 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Meal Planner</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
-<link rel="stylesheet" href="meal-planner.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
 </head>
 <body>
-<!-- App Header -->
-<header class="app-header">
-<div class="header-content">
-<div class="header-left">
-<div class="header-icon">
-<i data-lucide="chef-hat"></i>
-</div>
-<div class="header-text">
-<h1>Smart Meal Planner</h1>
-<p>Your Personal Cooking Assistant</p>
-</div>
-</div>
-<button class="settings-btn">
-<i data-lucide="settings"></i>
-</button>
-</div>
-</header>
-<main class="main-content">
-<!-- Quick Actions -->
-<section class="quick-actions">
-<h2>Quick Start</h2>
-<div class="quick-grid">
-<button class="quick-btn" data-action="quick-meal">
-<div class="quick-icon quick-red">
-<i data-lucide="clock"></i>
-</div>
-<span>Quick Meal</span>
-</button>
-<button class="quick-btn" data-action="healthy">
-<div class="quick-icon quick-green">
-<i data-lucide="heart"></i>
-</div>
-<span>Healthy</span>
-</button>
-<button class="quick-btn" data-action="favorites">
-<div class="quick-icon quick-yellow">
-<i data-lucide="star"></i>
-</div>
-<span>Favorites</span>
-</button>
-</div>
-</section>
-<!-- Meal Planning Form -->
-<section class="meal-form-section">
-<div class="form-container">
-<div class="form-header">
-<h2>Plan Your Perfect Meal</h2>
-<p>Tell us your preferences and we'll suggest something delicious</p>
-</div>
-<form id="mealPlannerForm" class="meal-form">
-<!-- Dietary Restrictions -->
-<div class="form-group">
-<label class="form-label">
-<i data-lucide="check-circle"></i>
-Dietary Preferences
-</label>
-<div class="checkbox-grid">
-<label class="checkbox-item">
-<input type="checkbox" name="dietaryRestrictions" value="vegetarian">
-<div class="checkbox-content">
-<div class="checkbox-icon">🌱</div>
-<div class="checkbox-text">
-<span class="checkbox-title">Vegetarian</span>
-<span class="checkbox-desc">Plant-based options only</span>
-</div>
-</div>
-</label>
-<label class="checkbox-item">
-<input type="checkbox" name="dietaryRestrictions" value="gluten-free">
-<div class="checkbox-content">
-<div class="checkbox-icon">🌾</div>
-<div class="checkbox-text">
-<span class="checkbox-title">Gluten-Free</span>
-<span class="checkbox-desc">No wheat, barley, or rye</span>
-</div>
-</div>
-</label>
-</div>
-</div>
-<!-- Ingredients Available -->
-<div class="form-group">
-<label class="form-label">
-<i data-lucide="package"></i>
-Ingredients Available?
-</label>
-<div class="radio-grid">
-<label class="radio-item">
-<input type="radio" name="ingredientsAvailable" value="true" checked>
-<div class="radio-content">
-<div class="radio-icon">✅</div>
-<span>Yes, I have ingredients</span>
-</div>
-</label>
-<label class="radio-item">
-<input type="radio" name="ingredientsAvailable" value="false">
-<div class="radio-content">
-<div class="radio-icon">🛒</div>
-<span>No, need shopping list</span>
-</div>
-</label>
-</div>
-</div>
-<!-- Time Available -->
-<div class="form-group">
-<label class="form-label">
-<i data-lucide="clock"></i>
-How much time do you have? (minutes)
-</label>
-<div class="input-container">
-<input type="number" id="timeInput" name="timeAvailable" min="1" placeholder="e.g., 30" class="time-input">
-</div>
-</div>
-<!-- Nutrition Goal -->
-<div class="form-group">
-<label class="form-label">
-<i data-lucide="target"></i>
-Current Nutrition Goal
-</label>
-<div class="radio-grid">
-<label class="radio-item">
-<input type="radio" name="nutritionGoal" value="high-protein">
-<div class="radio-content">
-<div class="radio-icon">💪</div>
-<span>High Protein</span>
-</div>
-</label>
-<label class="radio-item">
-<input type="radio" name="nutritionGoal" value="low-calorie">
-<div class="radio-content">
-<div class="radio-icon">🥗</div>
-<span>Low Calorie</span>
-</div>
-</label>
-<label class="radio-item">
-<input type="radio" name="nutritionGoal" value="balanced" checked>
-<div class="radio-content">
-<div class="radio-icon">⚖️</div>
-<span>Balanced</span>
-</div>
-</label>
-</div>
-</div>
-<!-- Calorie Budget (conditionally shown) -->
-<div class="form-group" id="calorieBudgetSection" style="display: none;">
-<label class="form-label">
-<i data-lucide="calculator"></i>
-Does a regular meal fit your calorie budget?
-</label>
-<div class="radio-grid">
-<label class="radio-item">
-<input type="radio" name="calorieBudget" value="full" checked>
-<div class="radio-content">
-<div class="radio-icon">🍽️</div>
-<span>Yes, full meal</span>
-</div>
-</label>
-<label class="radio-item">
-<input type="radio" name="calorieBudget" value="light">
-<div class="radio-content">
-<div class="radio-icon">🥬</div>
-<span>No, keep it light</span>
-</div>
-</label>
-</div>
-</div>
-<button type="submit" class="plan-button" id="planButton">
-<i data-lucide="sparkles"></i>
-Plan My Meal
-</button>
-</form>
-</div>
-</section>
-<!-- Loading State -->
-<section class="loading-section" id="loadingSection" style="display: none;">
-<div class="loading-container">
-<div class="loading-spinner"></div>
-<p class="loading-text">Cooking up your perfect meal...</p>
-<p class="loading-subtext">Analyzing your preferences</p>
-</div>
-</section>
-<!-- Suggestion Results -->
-<section class="suggestion-section" id="suggestionSection" style="display: none;">
-<div id="suggestionContent"></div>
-</section>
-<!-- Recent Meals -->
-<section class="recent-meals">
-<div class="recent-header">
-<h2>Recent Meals</h2>
-<button class="view-all-btn">View All</button>
-</div>
-<div class="recent-grid" id="recentMealsGrid">
-<!-- Recent meals will be populated by JavaScript -->
-</div>
-</section>
-</main>
-<!-- Bottom Navigation -->
-<nav class="bottom-nav">
-<button class="nav-item active">
-<i data-lucide="home"></i>
-<span>Home</span>
-</button>
-<button class="nav-item">
-<i data-lucide="search"></i>
-<span>Search</span>
-</button>
-<button class="nav-item">
-<i data-lucide="heart"></i>
-<span>Favorites</span>
-</button>
-<button class="nav-item">
-<i data-lucide="user"></i>
-<span>Profile</span>
-</button>
-</nav>
-<!-- Message Modal -->
-<div class="modal-overlay" id="messageModal">
-<div class="modal-content">
-<h3 id="modalTitle">Message</h3>
-<p id="modalMessage">Content</p>
-<button id="modalCloseBtn" class="modal-close-btn">OK</button>
-</div>
-</div>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-<script src="meal-planner.js"></script>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Smart Meal Planner&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="style.css"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;main class="planner-container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;header&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h1&gt;Smart Meal Planner&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p&gt;Answer a few questions to get your personalized meal suggestion.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;form id="meal-form"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;label for="dietary-restriction"&gt;1. Do you have any dietary restrictions? (e.g., Vegan, Gluten-Free)&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="dietary-restriction" placeholder="e.g., Vegetarian" autocomplete="off"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p&gt;2. Are the necessary ingredients available at home?&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="radio-group"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;label&gt;&lt;input type="radio" name="ingredients" value="yes"&gt; Yes&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;label&gt;&lt;input type="radio" name="ingredients" value="no"&gt; No&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;label for="time-available"&gt;3. How much time do you have? (in minutes)&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;input type="number" id="time-available" min="0" placeholder="e.g., 30"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p&gt;4. What is your current nutrition goal?&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="radio-group"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;label&gt;&lt;input type="radio" name="goal" value="high-protein"&gt; High-Protein&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;label&gt;&lt;input type="radio" name="goal" value="low-calorie"&gt; Low-Calorie&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;label&gt;&lt;input type="radio" name="goal" value="none"&gt; No Specific Goal&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;button type="submit" id="submit-btn"&gt;Get Recommendation&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/form&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="result-container" class="hidden"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h2 id="result-title"&gt;&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p id="result-description"&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;ul id="result-list"&gt;&lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="script.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
 </body>
 </html>
