@@ -1,103 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Meal Planner</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Smart Meal Planner&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="style.css"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;main class="planner-container"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Smart Meal Planner&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;form id="planner-form" novalidate&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;fieldset&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;legend&gt;How much time (in minutes) do you have?&lt;/legend&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label for="time-input"&gt;Time available:&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>type="number"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>id="time-input"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>name="timeAvailable"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>min="1"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>required</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/fieldset&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;fieldset&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;legend&gt;Select a dietary restriction:&lt;/legend&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>type="radio"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>id="opt-none"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>name="restriction"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>value="None"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>checked</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;label for="opt-none"&gt;None&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>type="radio"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>id="opt-vegetarian"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>name="restriction"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>value="Vegetarian"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;label for="opt-vegetarian"&gt;Vegetarian&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>type="radio"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>id="opt-vegan"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>name="restriction"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>value="Vegan"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;label for="opt-vegan"&gt;Vegan&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;input</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>type="radio"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>id="opt-glutenfree"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>name="restriction"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>value="Gluten-free"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;label for="opt-glutenfree"&gt;Gluten-free&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/fieldset&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>type="submit"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>id="get-recommendation"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disabled</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>Get Recommendation</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/form&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="spinner" class="hidden" aria-live="polite"&gt;⏳ Preparing…&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section id="result-container" class="hidden" aria-live="polite"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Your Meal Plan&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p id="suggestion"&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Shopping List&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;ul id="shopping-list"&gt;&lt;/ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script src="script.js"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+  <main class="planner-container">
+    <h1>Smart Meal Planner</h1>
+    <form id="planner-form" novalidate>
+      <fieldset>
+        <legend>How much time (in minutes) do you have?</legend>
+        <label for="time-input">Time available:</label>
+        <input type="number" id="time-input" name="timeAvailable" min="1" required>
+      </fieldset>
+
+      <fieldset>
+        <legend>Select a dietary restriction:</legend>
+        <div>
+          <input type="radio" id="opt-none" name="restriction" value="None" checked>
+          <label for="opt-none">None</label>
+        </div>
+        <div>
+          <input type="radio" id="opt-vegetarian" name="restriction" value="Vegetarian">
+          <label for="opt-vegetarian">Vegetarian</label>
+        </div>
+        <div>
+          <input type="radio" id="opt-vegan" name="restriction" value="Vegan">
+          <label for="opt-vegan">Vegan</label>
+        </div>
+        <div>
+          <input type="radio" id="opt-glutenfree" name="restriction" value="Gluten-free">
+          <label for="opt-glutenfree">Gluten-free</label>
+        </div>
+      </fieldset>
+
+      <button type="submit" id="get-recommendation" disabled>Get Recommendation</button>
+    </form>
+
+    <div id="spinner" class="hidden" aria-live="polite">⏳ Preparing…</div>
+    <section id="result-container" class="hidden" aria-live="polite">
+      <h2>Your Meal Plan</h2>
+      <p id="suggestion"></p>
+      <h3>Shopping List</h3>
+      <ul id="shopping-list"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
