@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const diet = document.getElementById('dietary-restriction').value;
         const ingredientsAvailable = document.querySelector('input[name="ingredients"]:checked');
-        const timeSelection = document.querySelector('input[name="time"]:checked'); // ZAMAN SEÇİMİNİ ALMA (GÜNCELLENDİ)
+        const timeSelection = document.querySelector('input[name="time"]:checked');
         const nutritionGoal = document.querySelector('input[name="goal"]:checked');
 
-        if (!ingredientsAvailable || !timeSelection || !nutritionGoal) { // KONTROL GÜNCELLENDİ
+        if (!ingredientsAvailable || !timeSelection || !nutritionGoal) {
             showError("Lütfen tüm zorunlu alanları doldurun.");
             return; 
         }
@@ -63,22 +63,20 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // YENİ ZAMAN MANTIĞI (GÜNCELLENDİ)
         const timeValue = timeSelection.value;
         let suggestionCategory;
 
-        if (timeValue === 'short') { // < 20 dk
+        if (timeValue === 'short') {
             suggestionCategory = nutritionGoal.value === 'high-protein' ? 'highProteinSnack' : 'lightSnack';
-        } else if (timeValue === 'medium') { // 20-45 dk
+        } else if (timeValue === 'medium') {
             suggestionCategory = 'quickMeal';
-        } else { // 'long', yani > 45 dk
+        } else {
             suggestionCategory = nutritionGoal.value === 'low-calorie' ? 'lowCalorieMeal' : 'regularMeal';
         }
         
         suggestRecipe(suggestionCategory, diet, nutritionGoal.value);
     });
     
-    // --- TARİF ÖNERİ FONKSİYONLARI ---
     function suggestRecipe(category, diet, goal) {
         const potentialRecipes = recipes[category];
         let filteredRecipes;
@@ -108,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showResult('Alışveriş Listesi Oluşturuldu', content);
     }
     
-    // --- GÖSTERİM FONKSİYONLARI ---
     function showResult(title, contentHTML) {
         resultContainer.className = 'visible';
         resultTitle.textContent = title;
@@ -121,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
         resultContent.innerHTML = `<p>${message}</p>`;
     }
 
-    // --- MODAL FONKSİYONLARI ---
     function openModal() {
         populateAllRecipes();
         modal.classList.remove('hidden');
@@ -160,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // --- OLAY DİNLEYİCİLERİ ---
     viewAllBtn.addEventListener('click', (e) => {
         e.preventDefault();
         openModal();
