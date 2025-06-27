@@ -58,17 +58,20 @@ header h1 {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+select {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
+    background-color: white;
 }
 
 input[type="text"]:focus,
-input[type="number"]:focus {
+input[type="number"]:focus,
+select:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
@@ -114,6 +117,18 @@ button[type="submit"]:active {
     padding: 1.5rem;
     border-radius: 8px;
     border-left: 5px solid;
+    line-height: 1.6;
+}
+
+#result-content h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+#result-content ul {
+    list-style-position: inside;
+    padding-left: 0;
 }
 
 #result-container.success {
@@ -131,15 +146,6 @@ button[type="submit"]:active {
     border-color: #1976D2;
 }
 
-#result-title {
-    margin-bottom: 0.5rem;
-}
-
-#result-list {
-    padding-left: 20px;
-    margin-top: 1rem;
-}
-
 .hidden {
     display: none;
 }
@@ -147,11 +153,5 @@ button[type="submit"]:active {
 @media (max-width: 480px) {
     .planner-container {
         padding: 1.5rem;
-    }
-
-    .radio-group {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
     }
 }
