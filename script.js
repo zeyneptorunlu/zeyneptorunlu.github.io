@@ -1,44 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- YENİDEN KATEGORİZE EDİLMİŞ TARİF VERİTABANI ---
+    // --- YENİ ZAMAN SKALASINA VE MANTIĞA GÖRE DÜZENLENMİŞ TARİF VERİTABANI ---
     const recipes = {
+        // < 20 DAKİKA
         highProteinSnack: [
-            { name: 'Süzme Yoğurt ve Yemişli Parfe', diets: ['vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Haşlanmış Yumurta ve Avokado', diets: ['vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Tuzlu Edamame', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Lor Peyniri ve Meyve', diets: ['vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Ton Balıklı Salatalık Kanepeleri', diets: ['gluten-free'], recipe: '...' },
-            { name: 'Protein Smoothie', diets: ['vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Fırında Nohut Gevreği', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
+            { name: 'Ton Balıklı Salatalık Kanepeleri', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Bir salatalığı kalın dilimler halinde kesin. Bir kapta konserve ton balığını az miktarda mayonez veya yoğurtla karıştırın. Karışımı salatalık dilimlerinin üzerine paylaştırın.</p>' },
+            { name: 'Süzme Yoğurt ve Yemişli Parfe', diets: ['vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Bir kaseye süzme yoğurt koyun. Üzerine bir avuç badem, ceviz ve taze yaban mersini ekleyin. İsteğe bağlı olarak bir çay kaşığı bal gezdirin.</p>' },
+            { name: 'Haşlanmış Yumurta ve Avokado', diets: ['vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>2 adet katı haşlanmış yumurtayı dilimleyin. Yanında çeyrek avokado dilimleri ve üzerine serpilmiş karabiber ile servis yapın.</p>' },
         ],
         lightSnack: [
-            { name: 'Elma Dilimleri ve Fıstık Ezmesi', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Caprese Çubukları', diets: ['vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Pirinç Patlağı ve Humus', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Yoğurtlu Salatalık Dilimleri', diets: ['vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Bir Avuç Zeytin', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Karpuz ve Beyaz Peynir Küpleri', diets: ['vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Sade Türk Kahvesi ve Bir Kare Bitter Çikolata', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' }
+            { name: 'Elma Dilimleri ve Fıstık Ezmesi', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Bir elmayı dilimleyin. Yanında 1-2 yemek kaşığı şekersiz fıstık ezmesi ile servis yapın.</p>' },
+            { name: 'Caprese Çubukları', diets: ['vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Çeri domatesleri, küçük mozzarella toplarını ve taze fesleğen yapraklarını küçük çubuklara sırayla dizin. Üzerine zeytinyağı ve balzamik sirke gezdirin.</p>' },
+            { name: 'Pirinç Patlağı ve Humus', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>2 adet tam tahıllı pirinç patlağının üzerine bolca humus sürün. Üzerine salatalık dilimleri ekleyebilirsiniz.</p>' },
         ],
+        // 20-45 DAKİKA ARASI
+        quickMeal: [
+            { name: 'Tavuklu Quesadilla', diets: [], recipe: '<h3>Tarif:</h3><p>Haşlanmış veya tavada pişirilmiş tavuk göğsünü didikleyin. Bir lavaşın yarısına tavukları, rendelenmiş peyniri ve mısır tanelerini yayın. Lavaşın diğer yarısını üzerine kapatıp tost makinesinde veya tavada peynir eriyene kadar pişirin.</p>' },
+            { name: 'Klasik Menemen', diets: ['vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Soğanı ve biberleri zeytinyağında kavurun. Rendelenmiş domatesleri ekleyip suyunu çekene kadar pişirin. Son olarak yumurtaları kırın ve karıştırarak pişirin. Üzerine maydanoz serpin.</p>' },
+            { name: 'Kremalı Mantarlı Tavuk', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Tavuk filetoları tavada mühürleyin. Aynı tavada mantarları soteleyin, krema ve baharatları ekleyin. Tavukları geri tavaya koyup sosla birlikte birkaç dakika daha pişirin.</p>' },
+            { name: 'Sarımsaklı ve Zeytinyağlı Spagetti (Aglio e Olio)', diets: ['vegan', 'vegetarian'], recipe: '<h3>Tarif:</h3><p>Spagettiyi haşlayın. Ayrı bir tavada bol zeytinyağında ince dilimlenmiş sarımsakları ve pul biberi hafifçe yakın. Haşlanmış makarnayı bu sosa ekleyip karıştırın ve taze maydanozla servis edin.</p>' }
+        ],
+        // > 45 DAKİKA
         regularMeal: [
-            { name: 'Klasik Menemen', diets: ['vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Fırında Peynirli Makarna', diets: ['vegetarian'], recipe: '...' },
-            { name: 'Mantarlı Risotto', diets: ['vegetarian'], recipe: '...' },
-            { name: 'Zeytinyağlı Biber Dolma', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Tavuklu ve Sebzeli Sote', diets: ['gluten-free'], recipe: '...' },
-            { name: 'Mercimekli Vegan Köfte', diets: ['vegan', 'vegetarian'], recipe: '...' },
-            { name: 'Izgara Köfte ve Piyaz', diets: ['gluten-free'], recipe: '...' },
+            { name: 'Izgara Köfte ve Piyaz', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Kıymayı rendelenmiş soğan ve baharatlarla yoğurup köfte şekli verin. Izgarada veya döküm tavada pişirin. Yanında haşlanmış fasulye, soğan ve domatesle hazırlanan piyazla servis yapın.</p>' },
+            { name: 'Fırında Beşamel Soslu Tavuk', diets: [], recipe: '<h3>Tarif:</h3><p>Tavuk butlarını fırın tepsisine dizin. Üzerine beşamel sos dökün ve rendelenmiş kaşar peyniri serpin. 200°C fırında 45-50 dakika, üzeri kızarana kadar pişirin.</p>' },
+            { name: 'Zeytinyağlı Biber Dolma', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>İç harcı için pirinç, soğan, kuş üzümü, fıstık, nane ve tuzu karıştırın. Biberlerin içini doldurun ve tencereye dizin. Üzerine zeytinyağı ve sıcak su gezdirip kısık ateşte pirinçler yumuşayana kadar pişirin.</p>' },
         ],
         lowCalorieMeal: [
-            { name: 'Izgara Somon ve Kuşkonmaz', diets: ['gluten-free'], recipe: '...' },
-            { name: 'Kinoalı ve Nohutlu Salata', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Tavuklu Marul Dürüm (Lettuce Wraps)', diets: ['gluten-free'], recipe: '...' },
-            { name: 'Bol Sebzeli Mercimek Çorbası', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Kabak Spagetti (Zoodles) ve Domates Sosu', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '...' },
-            { name: 'Fırında Limonlu ve Kekikli Tavuk Göğsü', diets: ['gluten-free'], recipe: '...' },
-            { name: 'Ispanaklı ve Mantarlı Omlet (Sadece Yumurta Beyazı)', diets: ['vegetarian', 'gluten-free'], recipe: '...' }
+            { name: 'Fırında Sebzeli Somon', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Bir fırın kağıdının üzerine somon filetoyu, brokoli, havuç ve kuşkonmazı yerleştirin. Üzerine zeytinyağı, limon dilimleri ve dereotu ekleyip kağıdı paket şeklinde kapatın. 200°C fırında 25-30 dakika pişirin.</p>' },
+            { name: 'Bol Sebzeli Mercimek Çorbası', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Soğan, havuç ve kerevizi doğrayıp tencerede soteleyin. Kırmızı mercimek, sebze suyu ve domates salçası ekleyip mercimekler yumuşayana kadar pişirin. Blenderdan geçirin ve üzerine nane gezdirin.</p>' },
+            { name: 'Kinoalı Tavuk Salatası', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Haşlanmış kinoa, haşlanmış ve didiklenmiş tavuk göğsü, bol yeşillik, çeri domates ve salatalığı karıştırın. Sosu için zeytinyağı, limon suyu ve hardalı karıştırıp üzerine gezdirin.</p>' },
         ]
     };
-    // Not: Tarif içerikleri ('recipe: "..."') yer kaplamaması için kısa kesilmiştir, önceki versiyondaki gibi doldurulabilir.
 
     // --- DOM Referansları ---
     const form = document.getElementById('meal-form');
@@ -71,47 +63,70 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const timeIsShort = parseInt(timeAvailable, 10) <= 30;
-        
+        // YENİ ZAMAN MANTIĞI
+        const time = parseInt(timeAvailable, 10);
         let suggestionCategory;
-        if (timeIsShort) {
+
+        if (time < 20) {
             suggestionCategory = nutritionGoal.value === 'high-protein' ? 'highProteinSnack' : 'lightSnack';
-        } else {
+        } else if (time >= 20 && time <= 45) {
+            // 20-45 dk arası her zaman "quickMeal" kategorisinden önerir.
+            // Bu kategori hem doyurucu hem hızlı seçenekler içerir.
+            suggestionCategory = 'quickMeal';
+        } else { // time > 45
             suggestionCategory = nutritionGoal.value === 'low-calorie' ? 'lowCalorieMeal' : 'regularMeal';
         }
         
-        suggestRecipe(suggestionCategory, diet);
+        suggestRecipe(suggestionCategory, diet, nutritionGoal.value);
     });
     
     // --- TARİF ÖNERİ FONKSİYONLARI ---
-    function suggestRecipe(category, diet) {
+    function suggestRecipe(category, diet, goal) {
         const potentialRecipes = recipes[category];
-        let filteredRecipes = potentialRecipes.filter(recipe => diet === 'none' || recipe.diets.includes(diet));
+        let filteredRecipes;
+
+        // YENİ FİLTRELEME MANTIĞI
+        if (diet === 'none') {
+            // Eğer kısıtlama yoksa ve hedef "keyifli öğün" veya "yüksek protein" ise,
+            // öncelikli olarak et/tavuk/balık gibi genel tarifleri öner.
+            if(goal === 'none' || goal === 'high-protein'){
+                const nonVegRecipes = potentialRecipes.filter(recipe => !recipe.diets.includes('vegan') && !recipe.diets.includes('vegetarian'));
+                // Eğer hiç etli/tavuklu seçenek yoksa, tüm listeyi kullan
+                filteredRecipes = nonVegRecipes.length > 0 ? nonVegRecipes : potentialRecipes;
+            } else {
+                 // Düşük kalori hedefi için tüm seçenekler uygundur
+                filteredRecipes = potentialRecipes;
+            }
+        } else {
+            // Belirli bir diyet seçildiyse ona göre filtrele
+            filteredRecipes = potentialRecipes.filter(recipe => recipe.diets.includes(diet));
+        }
         
         if (filteredRecipes.length === 0) {
-            showError(`Maalesef, seçtiğiniz diyet (${diet}) için bu kategoride uygun bir tarif bulunamadı.`);
+            showError(`Maalesef, aradığınız kriterlere (${category} / ${diet}) uygun bir tarif bulunamadı.`);
             return;
         }
         
         const randomRecipe = filteredRecipes[Math.floor(Math.random() * filteredRecipes.length)];
-        const recipeHTML = `<h3>Tarif:</h3><p>${randomRecipe.name} için basit bir tarif...</p><em>(Gerçek tarifler önceki versiyondaki gibi eklenebilir)</em>`;
-        showResult(`İşte size bir öneri: ${randomRecipe.name}`, recipeHTML, 'success');
+        showResult(`İşte size bir öneri: ${randomRecipe.name}`, randomRecipe.recipe, 'success');
     }
 
-    function generateShoppingList(diet) {
+    function generateShoppingList() {
         const content = `<p>Malzemeleriniz olmadığı için önce alışveriş yapmalısınız. Örnek bir liste:</p><ul><li>Soğan, Sarımsak</li><li>Mevsim Yeşillikleri</li><li>Seçtiğiniz bir protein kaynağı</li></ul>`;
         showResult('Alışveriş Listesi Oluşturuldu', content, 'info');
     }
     
     // --- GÖSTERİM FONKSİYONLARI ---
-    function showResult(title, contentHTML, type) {
-        resultContainer.className = 'visible'; // Sadece 'visible' ekle
+    function showResult(title, contentHTML) {
+        resultContainer.className = 'visible';
         resultTitle.textContent = title;
         resultContent.innerHTML = contentHTML;
     }
     
     function showError(message) {
-        showResult('Hata!', `<p>${message}</p>`, 'error');
+        resultContainer.className = 'visible error-style'; // Hata için özel stil eklenebilir
+        resultTitle.textContent = 'Bir sorun oluştu!';
+        resultContent.innerHTML = `<p>${message}</p>`;
     }
 
     // --- MODAL FONKSİYONLARI ---
@@ -125,12 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function populateAllRecipes() {
-        allRecipesListDiv.innerHTML = ''; // Listeyi temizle
+        allRecipesListDiv.innerHTML = ''; 
         const categoryTitles = {
-            highProteinSnack: 'Yüksek Proteinli Atıştırmalıklar',
-            lightSnack: 'Hafif Atıştırmalıklar',
-            regularMeal: 'Normal Öğünler',
-            lowCalorieMeal: 'Düşük Kalorili Öğünler'
+            highProteinSnack: '(< 20 dk) Yüksek Proteinli Atıştırmalıklar',
+            lightSnack: '(< 20 dk) Hafif Atıştırmalıklar',
+            quickMeal: '(20-45 dk) Pratik Öğünler',
+            regularMeal: '(> 45 dk) Doyurucu Öğünler',
+            lowCalorieMeal: '(> 45 dk) Düşük Kalorili Öğünler'
         };
 
         for (const category in recipes) {
@@ -141,7 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
             recipes[category].forEach(recipe => {
                 const recipeEl = document.createElement('p');
                 recipeEl.textContent = recipe.name;
-                // Tıklama özelliği eklenebilir
+                recipeEl.addEventListener('click', () => {
+                    closeModal();
+                    // Biraz gecikme ile göster ki modal kapansın
+                    setTimeout(() => {
+                        showResult(`Seçtiğiniz Tarif: ${recipe.name}`, recipe.recipe);
+                    }, 400);
+                });
                 allRecipesListDiv.appendChild(recipeEl);
             });
         }
@@ -154,10 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     closeModalBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
-        // Modal'ın dışına tıklandığında kapat
         if (e.target === modal) {
             closeModal();
         }
     });
-
 });
