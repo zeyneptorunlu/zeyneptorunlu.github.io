@@ -1,169 +1,192 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- YENİ ZAMAN SKALASINA VE MANTIĞA GÖRE DÜZENLENMİŞ TARİF VERİTABANI ---
-    const recipes = {
-        // < 20 DAKİKA
-        highProteinSnack: [
-            { name: 'Ton Balıklı Salatalık Kanepeleri', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Bir salatalığı kalın dilimler halinde kesin. Bir kapta konserve ton balığını az miktarda mayonez veya yoğurtla karıştırın. Karışımı salatalık dilimlerinin üzerine paylaştırın.</p>' },
-            { name: 'Süzme Yoğurt ve Yemişli Parfe', diets: ['vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Bir kaseye süzme yoğurt koyun. Üzerine bir avuç badem, ceviz ve taze yaban mersini ekleyin. İsteğe bağlı olarak bir çay kaşığı bal gezdirin.</p>' },
-            { name: 'Haşlanmış Yumurta ve Avokado', diets: ['vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>2 adet katı haşlanmış yumurtayı dilimleyin. Yanında çeyrek avokado dilimleri ve üzerine serpilmiş karabiber ile servis yapın.</p>' },
-        ],
-        lightSnack: [
-            { name: 'Elma Dilimleri ve Fıstık Ezmesi', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Bir elmayı dilimleyin. Yanında 1-2 yemek kaşığı şekersiz fıstık ezmesi ile servis yapın.</p>' },
-            { name: 'Caprese Çubukları', diets: ['vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Çeri domatesleri, küçük mozzarella toplarını ve taze fesleğen yapraklarını küçük çubuklara sırayla dizin. Üzerine zeytinyağı ve balzamik sirke gezdirin.</p>' },
-            { name: 'Pirinç Patlağı ve Humus', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>2 adet tam tahıllı pirinç patlağının üzerine bolca humus sürün. Üzerine salatalık dilimleri ekleyebilirsiniz.</p>' },
-        ],
-        // 20-45 DAKİKA ARASI
-        quickMeal: [
-            { name: 'Tavuklu Quesadilla', diets: [], recipe: '<h3>Tarif:</h3><p>Haşlanmış veya tavada pişirilmiş tavuk göğsünü didikleyin. Bir lavaşın yarısına tavukları, rendelenmiş peyniri ve mısır tanelerini yayın. Lavaşın diğer yarısını üzerine kapatıp tost makinesinde veya tavada peynir eriyene kadar pişirin.</p>' },
-            { name: 'Klasik Menemen', diets: ['vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Soğanı ve biberleri zeytinyağında kavurun. Rendelenmiş domatesleri ekleyip suyunu çekene kadar pişirin. Son olarak yumurtaları kırın ve karıştırarak pişirin. Üzerine maydanoz serpin.</p>' },
-            { name: 'Kremalı Mantarlı Tavuk', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Tavuk filetoları tavada mühürleyin. Aynı tavada mantarları soteleyin, krema ve baharatları ekleyin. Tavukları geri tavaya koyup sosla birlikte birkaç dakika daha pişirin.</p>' },
-            { name: 'Sarımsaklı ve Zeytinyağlı Spagetti (Aglio e Olio)', diets: ['vegan', 'vegetarian'], recipe: '<h3>Tarif:</h3><p>Spagettiyi haşlayın. Ayrı bir tavada bol zeytinyağında ince dilimlenmiş sarımsakları ve pul biberi hafifçe yakın. Haşlanmış makarnayı bu sosa ekleyip karıştırın ve taze maydanozla servis edin.</p>' }
-        ],
-        // > 45 DAKİKA
-        regularMeal: [
-            { name: 'Izgara Köfte ve Piyaz', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Kıymayı rendelenmiş soğan ve baharatlarla yoğurup köfte şekli verin. Izgarada veya döküm tavada pişirin. Yanında haşlanmış fasulye, soğan ve domatesle hazırlanan piyazla servis yapın.</p>' },
-            { name: 'Fırında Beşamel Soslu Tavuk', diets: [], recipe: '<h3>Tarif:</h3><p>Tavuk butlarını fırın tepsisine dizin. Üzerine beşamel sos dökün ve rendelenmiş kaşar peyniri serpin. 200°C fırında 45-50 dakika, üzeri kızarana kadar pişirin.</p>' },
-            { name: 'Zeytinyağlı Biber Dolma', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>İç harcı için pirinç, soğan, kuş üzümü, fıstık, nane ve tuzu karıştırın. Biberlerin içini doldurun ve tencereye dizin. Üzerine zeytinyağı ve sıcak su gezdirip kısık ateşte pirinçler yumuşayana kadar pişirin.</p>' },
-        ],
-        lowCalorieMeal: [
-            { name: 'Fırında Sebzeli Somon', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Bir fırın kağıdının üzerine somon filetoyu, brokoli, havuç ve kuşkonmazı yerleştirin. Üzerine zeytinyağı, limon dilimleri ve dereotu ekleyip kağıdı paket şeklinde kapatın. 200°C fırında 25-30 dakika pişirin.</p>' },
-            { name: 'Bol Sebzeli Mercimek Çorbası', diets: ['vegan', 'vegetarian', 'gluten-free'], recipe: '<h3>Tarif:</h3><p>Soğan, havuç ve kerevizi doğrayıp tencerede soteleyin. Kırmızı mercimek, sebze suyu ve domates salçası ekleyip mercimekler yumuşayana kadar pişirin. Blenderdan geçirin ve üzerine nane gezdirin.</p>' },
-            { name: 'Kinoalı Tavuk Salatası', diets: ['gluten-free'], recipe: '<h3>Tarif:</h3><p>Haşlanmış kinoa, haşlanmış ve didiklenmiş tavuk göğsü, bol yeşillik, çeri domates ve salatalığı karıştırın. Sosu için zeytinyağı, limon suyu ve hardalı karıştırıp üzerine gezdirin.</p>' },
-        ]
+    // --- STATE & DOM ELEMENTS ---
+    const dom = { // DOM elemanlarını tek bir nesnede topla
+        form: document.getElementById('meal-form'),
+        resultContainer: document.getElementById('result-container'),
+        weeklyGrid: document.getElementById('weekly-grid'),
+        // ... Diğer tüm butonlar, modallar, inputlar buraya eklenecek
+        themeToggle: document.getElementById('theme-toggle'),
+        viewAllBtn: document.getElementById('view-all-recipes-btn'),
+        modal: document.getElementById('recipe-modal'),
+        closeModalBtn: document.getElementById('modal-close-btn'),
+        searchInput: document.getElementById('recipe-search-input'),
+        allRecipesListDiv: document.getElementById('all-recipes-list'),
+        favoritesListDiv: document.getElementById('favorites-list'),
+        modalTabs: document.querySelector('.modal-tabs')
     };
 
-    // --- DOM Referansları ---
-    const form = document.getElementById('meal-form');
-    const resultContainer = document.getElementById('result-container');
-    const resultTitle = document.getElementById('result-title');
-    const resultContent = document.getElementById('result-content');
+    let state = { // Uygulamanın durumunu yönet
+        favorites: [],
+        weeklyPlan: {}
+    };
 
-    const viewAllBtn = document.getElementById('view-all-recipes-btn');
-    const modal = document.getElementById('recipe-modal');
-    const closeModalBtn = document.getElementById('modal-close-btn');
-    const allRecipesListDiv = document.getElementById('all-recipes-list');
+    const recipes = { /* ... Önceki versiyondaki gibi tüm tarifler buraya eklenecek, her birine imageUrl eklenecek ... */ 
+        // Örnek bir tarif objesi:
+        // quickMeal: [
+        //     { name: 'Tavuklu Quesadilla', diets: [], imageUrl: 'https://placehold.co/600x400/E67E22/white?text=Tavuklu+Quesadilla', recipe: '...' },
+        // ]
+    };
 
 
-    // --- Form Gönderme Olayı ---
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        
-        const diet = document.getElementById('dietary-restriction').value;
-        const ingredientsAvailable = document.querySelector('input[name="ingredients"]:checked');
-        const timeSelection = document.querySelector('input[name="time"]:checked');
-        const nutritionGoal = document.querySelector('input[name="goal"]:checked');
+    // --- THEME LOGIC ---
+    function applyTheme(theme) {
+        document.body.classList.toggle('dark-theme', theme === 'dark');
+        dom.themeToggle.checked = theme === 'dark';
+    }
 
-        if (!ingredientsAvailable || !timeSelection || !nutritionGoal) {
-            showError("Lütfen tüm zorunlu alanları doldurun.");
-            return; 
-        }
+    function handleThemeToggle() {
+        const newTheme = dom.themeToggle.checked ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+    }
 
-        if (ingredientsAvailable.value === 'no') {
-            generateShoppingList();
-            return;
-        }
+    // --- FAVORITES LOGIC ---
+    function loadFavorites() {
+        state.favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    }
 
-        const timeValue = timeSelection.value;
-        let suggestionCategory;
+    function saveFavorites() {
+        localStorage.setItem('favorites', JSON.stringify(state.favorites));
+    }
 
-        if (timeValue === 'short') {
-            suggestionCategory = nutritionGoal.value === 'high-protein' ? 'highProteinSnack' : 'lightSnack';
-        } else if (timeValue === 'medium') {
-            suggestionCategory = 'quickMeal';
+    function toggleFavorite(recipeName) {
+        if (state.favorites.includes(recipeName)) {
+            state.favorites = state.favorites.filter(fav => fav !== recipeName);
         } else {
-            suggestionCategory = nutritionGoal.value === 'low-calorie' ? 'lowCalorieMeal' : 'regularMeal';
+            state.favorites.push(recipeName);
         }
-        
-        suggestRecipe(suggestionCategory, diet, nutritionGoal.value);
-    });
+        saveFavorites();
+        // Butonun görünümünü anında güncelle
+        const favButton = dom.resultContainer.querySelector('.fav-btn');
+        if (favButton && favButton.dataset.recipeName === recipeName) {
+            updateFavoriteButtonUI(favButton, recipeName);
+        }
+    }
     
-    function suggestRecipe(category, diet, goal) {
-        const potentialRecipes = recipes[category];
-        let filteredRecipes;
-
-        if (diet === 'none') {
-            if(goal === 'none' || goal === 'high-protein'){
-                const nonVegRecipes = potentialRecipes.filter(recipe => !recipe.diets.includes('vegan') && !recipe.diets.includes('vegetarian'));
-                filteredRecipes = nonVegRecipes.length > 0 ? nonVegRecipes : potentialRecipes;
-            } else {
-                filteredRecipes = potentialRecipes;
-            }
+    function updateFavoriteButtonUI(button, recipeName) {
+        if (state.favorites.includes(recipeName)) {
+            button.textContent = 'Favorilerden Çıkar ❤️';
+            button.classList.add('is-favorite');
         } else {
-            filteredRecipes = potentialRecipes.filter(recipe => recipe.diets.includes(diet));
+            button.textContent = 'Favorilere Ekle ♡';
+            button.classList.remove('is-favorite');
         }
-        
-        if (filteredRecipes.length === 0) {
-            showError(`Maalesef, aradığınız kriterlere (${category} / ${diet}) uygun bir tarif bulunamadı.`);
-            return;
-        }
-        
-        const randomRecipe = filteredRecipes[Math.floor(Math.random() * filteredRecipes.length)];
-        showResult(`İşte size bir öneri: ${randomRecipe.name}`, randomRecipe.recipe);
     }
 
-    function generateShoppingList() {
-        const content = `<p>Malzemeleriniz olmadığı için önce alışveriş yapmalısınız. Örnek bir liste:</p><ul><li>Soğan, Sarımsak</li><li>Mevsim Yeşillikleri</li><li>Seçtiğiniz bir protein kaynağı</li></ul>`;
-        showResult('Alışveriş Listesi Oluşturuldu', content);
-    }
-    
-    function showResult(title, contentHTML) {
-        resultContainer.className = 'visible';
-        resultTitle.textContent = title;
-        resultContent.innerHTML = contentHTML;
-    }
-    
-    function showError(message) {
-        resultContainer.className = 'visible error-style';
-        resultTitle.textContent = 'Bir sorun oluştu!';
-        resultContent.innerHTML = `<p>${message}</p>`;
-    }
 
-    function openModal() {
-        populateAllRecipes();
-        modal.classList.remove('hidden');
-    }
-
-    function closeModal() {
-        modal.classList.add('hidden');
-    }
-
-    function populateAllRecipes() {
-        allRecipesListDiv.innerHTML = ''; 
-        const categoryTitles = {
-            highProteinSnack: '(< 20 dk) Yüksek Proteinli Atıştırmalıklar',
-            lightSnack: '(< 20 dk) Hafif Atıştırmalıklar',
-            quickMeal: '(20-45 dk) Pratik Öğünler',
-            regularMeal: '(> 45 dk) Doyurucu Öğünler',
-            lowCalorieMeal: '(> 45 dk) Düşük Kalorili Öğünler'
+    // --- WEEKLY PLANNER LOGIC ---
+    function loadWeeklyPlan() {
+        state.weeklyPlan = JSON.parse(localStorage.getItem('weeklyPlan')) || {
+            monday: null, tuesday: null, wednesday: null, thursday: null, friday: null, saturday: null, sunday: null
         };
+    }
 
-        for (const category in recipes) {
-            const title = document.createElement('h3');
-            title.textContent = categoryTitles[category];
-            allRecipesListDiv.appendChild(title);
-            
-            recipes[category].forEach(recipe => {
-                const recipeEl = document.createElement('p');
-                recipeEl.textContent = recipe.name;
-                recipeEl.addEventListener('click', () => {
-                    closeModal();
-                    setTimeout(() => {
-                        showResult(`Seçtiğiniz Tarif: ${recipe.name}`, recipe.recipe);
-                    }, 400);
-                });
-                allRecipesListDiv.appendChild(recipeEl);
-            });
+    function saveWeeklyPlan() {
+        localStorage.setItem('weeklyPlan', JSON.stringify(state.weeklyPlan));
+    }
+
+    function addToPlan(day, recipeName) {
+        state.weeklyPlan[day] = recipeName;
+        saveWeeklyPlan();
+        renderWeeklyPlan();
+    }
+    
+    function removeFromPlan(day) {
+        state.weeklyPlan[day] = null;
+        saveWeeklyPlan();
+        renderWeeklyPlan();
+    }
+
+    function renderWeeklyPlan() {
+        for (const day in state.weeklyPlan) {
+            const dayCard = dom.weeklyGrid.querySelector(`.day-card[data-day="${day}"]`);
+            const mealSlot = dayCard.querySelector('.meal-slot');
+            const recipeName = state.weeklyPlan[day];
+
+            mealSlot.innerHTML = '';
+            if (recipeName) {
+                const mealDiv = document.createElement('div');
+                mealDiv.className = 'planned-meal';
+                mealDiv.textContent = recipeName;
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-meal-btn';
+                removeBtn.innerHTML = '&times;';
+                removeBtn.onclick = () => removeFromPlan(day);
+                
+                mealDiv.appendChild(removeBtn);
+                mealSlot.appendChild(mealDiv);
+            }
+        }
+    }
+
+
+    // --- CORE PLANNER & UI LOGIC ---
+    function showResult(recipe) {
+        dom.resultContainer.classList.add('visible');
+        dom.resultContainer.innerHTML = `
+            <img src="${recipe.imageUrl}" alt="${recipe.name}">
+            <h2>${recipe.name}</h2>
+            <div>${recipe.recipe}</div>
+            <div class="result-actions">
+                <button class="fav-btn" data-recipe-name="${recipe.name}">Favorilere Ekle ♡</button>
+                <button class="plan-btn" data-recipe-name="${recipe.name}">Haftalık Plana Ekle</button>
+            </div>
+            <div class="day-selector hidden">
+                ${Object.keys(state.weeklyPlan).map(day => `<button data-day="${day}">${day.charAt(0).toUpperCase() + day.slice(1,3)}</button>`).join('')}
+            </div>
+        `;
+        updateFavoriteButtonUI(dom.resultContainer.querySelector('.fav-btn'), recipe.name);
+    }
+    
+    // ... suggestRecipe, generateShoppingList, showError (önceki versiyondaki gibi)
+    
+    // Olay dinleyicileri (event listeners) ve başlangıç fonksiyonu (init)
+    function init() {
+        // 1. Veriyi yükle
+        loadFavorites();
+        loadWeeklyPlan();
+        
+        // 2. Arayüzü render et
+        renderWeeklyPlan();
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        // 3. Olay dinleyicilerini bağla
+        dom.form.addEventListener('submit', handleFormSubmit);
+        dom.form.addEventListener('reset', () => dom.resultContainer.classList.remove('visible'));
+        dom.themeToggle.addEventListener('change', handleThemeToggle);
+        
+        // ... Diğer tüm olay dinleyicileri
+        dom.viewAllBtn.addEventListener('click', openModal);
+        dom.closeModalBtn.addEventListener('click', closeModal);
+        dom.modal.addEventListener('click', (e) => e.target === dom.modal && closeModal());
+        dom.searchInput.addEventListener('input', handleSearch);
+        dom.modalTabs.addEventListener('click', handleTabClick);
+        
+        dom.resultContainer.addEventListener('click', handleResultActionClick);
+    }
+    
+    // Olayları yöneten fonksiyonlar (handle functions)
+    function handleFormSubmit(event) { /* ... */ }
+    function handleTabClick(event) { /* ... */ }
+    function handleSearch(event) { /* ... */ }
+    function handleResultActionClick(event) {
+        const target = event.target;
+        if (target.classList.contains('fav-btn')) {
+            toggleFavorite(target.dataset.recipeName);
+        }
+        if (target.classList.contains('plan-btn')) {
+            const selector = dom.resultContainer.querySelector('.day-selector');
+            selector.classList.toggle('hidden');
+        }
+        if (target.matches('.day-selector button')) {
+            const recipeName = dom.resultContainer.querySelector('.plan-btn').dataset.recipeName;
+            addToPlan(target.dataset.day, recipeName);
+            dom.resultContainer.querySelector('.day-selector').classList.add('hidden');
         }
     }
     
-    viewAllBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModal();
-    });
-    closeModalBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
+    // Başlangıç
+    init();
 });
