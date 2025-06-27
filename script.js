@@ -99,9 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Önce diyete uygun tarifleri filtrele
         let filteredRecipes = potentialRecipes.filter(recipe => diet === 'none' || recipe.diets.includes(diet));
         
-        // Eğer diyete uygun tarif bulunamazsa, o kategorideki tüm tarifleri kullan
+        // Eğer diyete uygun tarif bulunamazsa, o kategorideki tüm tarifleri kullan ama bir not düş
         if (filteredRecipes.length === 0) {
-            filteredRecipes = potentialRecipes;
+            // Bu senaryoda vegan seçilip vegan tarif bulunamasaydı yaşanırdı. Bizim datamızda var.
+            // Ama yine de bir güvenlik önlemi olarak burada dursun.
+            filteredRecipes = potentialRecipes; 
         }
         
         // Rastgele bir tarif seç
@@ -118,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * Alışveriş listesi oluşturur.
      */
     function generateShoppingList(diet) {
-        // Akıllı öneri: Vegan seçiliyse vegan bir tarifin alışveriş listesini öner
         const recipeToSuggest = diet === 'vegan' 
             ? recipes.lowCalorieMeal.find(r => r.diets.includes('vegan')) 
             : recipes.regularMeal[0];
