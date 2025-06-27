@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Meal Planner</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Meal Planner</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="planner-container">
-    <h1>Smart Meal Planner</h1>
-    <form id="planner-form" novalidate>
-      <fieldset>
-        <legend>How much time (in minutes) do you have?</legend>
-        <label for="time-input">Time available:</label>
-        <input type="number" id="time-input" name="timeAvailable" min="1" required>
-      </fieldset>
 
-      <fieldset>
-        <legend>Select a dietary restriction:</legend>
-        <div>
-          <input type="radio" id="opt-none" name="restriction" value="None" checked>
-          <label for="opt-none">None</label>
-        </div>
-        <div>
-          <input type="radio" id="opt-vegetarian" name="restriction" value="Vegetarian">
-          <label for="opt-vegetarian">Vegetarian</label>
-        </div>
-        <div>
-          <input type="radio" id="opt-vegan" name="restriction" value="Vegan">
-          <label for="opt-vegan">Vegan</label>
-        </div>
-        <div>
-          <input type="radio" id="opt-glutenfree" name="restriction" value="Gluten-free">
-          <label for="opt-glutenfree">Gluten-free</label>
-        </div>
-      </fieldset>
+    <main class="planner-container">
+        <header>
+            <h1>Smart Meal Planner</h1>
+            <p>Answer a few questions to get your personalized meal suggestion.</p>
+        </header>
 
-      <button type="submit" id="get-recommendation" disabled>Get Recommendation</button>
-    </form>
+        <form id="meal-form">
+            <div class="form-group">
+                <label for="dietary-restriction">1. Do you have any dietary restrictions? (e.g., Vegan, Gluten-Free)</label>
+                <input type="text" id="dietary-restriction" placeholder="e.g., Vegetarian" autocomplete="off">
+            </div>
 
-    <div id="spinner" class="hidden" aria-live="polite">⏳ Preparing…</div>
-    <section id="result-container" class="hidden" aria-live="polite">
-      <h2>Your Meal Plan</h2>
-      <p id="suggestion"></p>
-      <h3>Shopping List</h3>
-      <ul id="shopping-list"></ul>
-    </section>
-  </main>
+            <div class="form-group">
+                <p>2. Are the necessary ingredients available at home?</p>
+                <div class="radio-group">
+                    <label><input type="radio" name="ingredients" value="yes"> Yes</label>
+                    <label><input type="radio" name="ingredients" value="no"> No</label>
+                </div>
+            </div>
 
-  <script src="script.js"></script>
+            <div class="form-group">
+                <label for="time-available">3. How much time do you have? (in minutes)</label>
+                <input type="number" id="time-available" min="0" placeholder="e.g., 30">
+            </div>
+
+            <div class="form-group">
+                <p>4. What is your current nutrition goal?</p>
+                <div class="radio-group">
+                    <label><input type="radio" name="goal" value="high-protein"> High-Protein</label>
+                    <label><input type="radio" name="goal" value="low-calorie"> Low-Calorie</label>
+                    <label><input type="radio" name="goal" value="none"> No Specific Goal</label>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-btn">Get Recommendation</button>
+        </form>
+
+        <div id="result-container" class="hidden">
+            <h2 id="result-title"></h2>
+            <p id="result-description"></p>
+            <ul id="result-list"></ul>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
