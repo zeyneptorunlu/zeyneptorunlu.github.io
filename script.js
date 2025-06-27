@@ -50,30 +50,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const diet = document.getElementById('dietary-restriction').value;
         const ingredientsAvailable = document.querySelector('input[name="ingredients"]:checked');
-        const timeAvailable = document.getElementById('time-available').value;
+        const timeSelection = document.querySelector('input[name="time"]:checked'); // ZAMAN SEÇİMİNİ ALMA (GÜNCELLENDİ)
         const nutritionGoal = document.querySelector('input[name="goal"]:checked');
 
-        if (!ingredientsAvailable || !timeAvailable || !nutritionGoal) {
+        if (!ingredientsAvailable || !timeSelection || !nutritionGoal) { // KONTROL GÜNCELLENDİ
             showError("Lütfen tüm zorunlu alanları doldurun.");
             return; 
         }
 
         if (ingredientsAvailable.value === 'no') {
-            generateShoppingList(diet);
+            generateShoppingList();
             return;
         }
 
-        // YENİ ZAMAN MANTIĞI
-        const time = parseInt(timeAvailable, 10);
+        // YENİ ZAMAN MANTIĞI (GÜNCELLENDİ)
+        const timeValue = timeSelection.value;
         let suggestionCategory;
 
-        if (time < 20) {
+        if (timeValue === 'short') { // < 20 dk
             suggestionCategory = nutritionGoal.value === 'high-protein' ? 'highProteinSnack' : 'lightSnack';
-        } else if (time >= 20 && time <= 45) {
-            // 20-45 dk arası her zaman "quickMeal" kategorisinden önerir.
-            // Bu kategori hem doyurucu hem hızlı seçenekler içerir.
+        } else if (timeValue === 'medium') { // 20-45 dk
             suggestionCategory = 'quickMeal';
-        } else { // time > 45
+        } else { // 'long', yani > 45 dk
             suggestionCategory = nutritionGoal.value === 'low-calorie' ? 'lowCalorieMeal' : 'regularMeal';
         }
         
@@ -85,20 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const potentialRecipes = recipes[category];
         let filteredRecipes;
 
-        // YENİ FİLTRELEME MANTIĞI
         if (diet === 'none') {
-            // Eğer kısıtlama yoksa ve hedef "keyifli öğün" veya "yüksek protein" ise,
-            // öncelikli olarak et/tavuk/balık gibi genel tarifleri öner.
             if(goal === 'none' || goal === 'high-protein'){
                 const nonVegRecipes = potentialRecipes.filter(recipe => !recipe.diets.includes('vegan') && !recipe.diets.includes('vegetarian'));
-                // Eğer hiç etli/tavuklu seçenek yoksa, tüm listeyi kullan
                 filteredRecipes = nonVegRecipes.length > 0 ? nonVegRecipes : potentialRecipes;
             } else {
-                 // Düşük kalori hedefi için tüm seçenekler uygundur
                 filteredRecipes = potentialRecipes;
             }
         } else {
-            // Belirli bir diyet seçildiyse ona göre filtrele
             filteredRecipes = potentialRecipes.filter(recipe => recipe.diets.includes(diet));
         }
         
@@ -108,12 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const randomRecipe = filteredRecipes[Math.floor(Math.random() * filteredRecipes.length)];
-        showResult(`İşte size bir öneri: ${randomRecipe.name}`, randomRecipe.recipe, 'success');
+        showResult(`İşte size bir öneri: ${randomRecipe.name}`, randomRecipe.recipe);
     }
 
     function generateShoppingList() {
         const content = `<p>Malzemeleriniz olmadığı için önce alışveriş yapmalısınız. Örnek bir liste:</p><ul><li>Soğan, Sarımsak</li><li>Mevsim Yeşillikleri</li><li>Seçtiğiniz bir protein kaynağı</li></ul>`;
-        showResult('Alışveriş Listesi Oluşturuldu', content, 'info');
+        showResult('Alışveriş Listesi Oluşturuldu', content);
     }
     
     // --- GÖSTERİM FONKSİYONLARI ---
@@ -124,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function showError(message) {
-        resultContainer.className = 'visible error-style'; // Hata için özel stil eklenebilir
+        resultContainer.className = 'visible error-style';
         resultTitle.textContent = 'Bir sorun oluştu!';
         resultContent.innerHTML = `<p>${message}</p>`;
     }
@@ -159,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 recipeEl.textContent = recipe.name;
                 recipeEl.addEventListener('click', () => {
                     closeModal();
-                    // Biraz gecikme ile göster ki modal kapansın
                     setTimeout(() => {
                         showResult(`Seçtiğiniz Tarif: ${recipe.name}`, recipe.recipe);
                     }, 400);
