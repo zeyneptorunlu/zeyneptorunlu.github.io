@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akıllı Yemek Planlayıcı</title>
+    <title>Akıllı Yemek Planlayıcı Pro+</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,79 +11,97 @@
 </head>
 <body>
 
-    <main class="planner-container">
-        <header>
-            <h1>Akıllı Yemek Planlayıcı</h1>
-            <p>Kişiselleştirilmiş yemek öneriniz için hayat tarzınıza uygun seçimler yapın.</p>
-        </header>
-
-        <form id="meal-form">
-            <div class="form-group">
-                <label for="dietary-restriction">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 5.354a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 5.354z"/></svg>
-                    Diyetiniz
-                </label>
-                <select id="dietary-restriction">
-                    <option value="none">Kısıtlama Yok</option>
-                    <option value="vegetarian">Vejetaryen</option>
-                    <option value="vegan">Vegan</option>
-                    <option value="gluten-free">Glutensiz</option>
-                </select>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Akıllı Yemek Planlayıcı <sup>Pro+</sup></h1>
+            <div class="theme-switcher">
+                <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
+                <label for="theme-toggle" class="theme-toggle-label"></label>
             </div>
-            
-            <div class="form-group">
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
-                    Malzemeler evde var mı?
-                </p>
-                <div class="radio-group-modern">
-                    <label><input type="radio" name="ingredients" value="yes"><span>Evet, mevcut</span></label>
-                    <label><input type="radio" name="ingredients" value="no"><span>Hayır, eksik</span></label>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="planner-container">
+            <p class="intro-text">Kişiselleştirilmiş yemek öneriniz için hayat tarzınıza uygun seçimler yapın.</p>
+
+            <form id="meal-form">
+                <div class="form-group">
+                    <label for="dietary-restriction">Diyetiniz</label>
+                    <select id="dietary-restriction">
+                        <option value="none">Kısıtlama Yok</option>
+                        <option value="vegetarian">Vejetaryen</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="gluten-free">Glutensiz</option>
+                    </select>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
-                    Ne kadar vaktiniz var?
-                </p>
-                <div class="radio-group-modern">
-                    <label><input type="radio" name="time" value="short"><span>&lt; 20 Dakika</span></label>
-                    <label><input type="radio" name="time" value="medium"><span>20-45 Dakika</span></label>
-                    <label><input type="radio" name="time" value="long"><span>&gt; 45 Dakika</span></label>
+                
+                <div class="form-group">
+                    <p>Malzemeler evde var mı?</p>
+                    <div class="radio-group-modern">
+                        <label><input type="radio" name="ingredients" value="yes"><span>Evet</span></label>
+                        <label><input type="radio" name="ingredients" value="no"><span>Hayır</span></label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.354 8.354a.5.5 0 1 0 .708.708L5.707 5.414V14.5a.5.5 0 0 0 1 0V5.414L10.354 9.06a.5.5 0 0 0 .708-.708l-5-5a.5.5 0 0 0-.708 0l-5 5z"/><path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1z"/></svg>
-                    Günün hedefi nedir?
-                </p>
-                <div class="radio-group-modern">
-                    <label><input type="radio" name="goal" value="high-protein"><span>Yüksek Protein</span></label>
-                    <label><input type="radio" name="goal" value="low-calorie"><span>Düşük Kalori</span></label>
-                    <label><input type="radio" name="goal" value="none"><span>Keyifli Bir Öğün</span></label>
+                <div class="form-group">
+                    <p>Ne kadar vaktiniz var?</p>
+                    <div class="radio-group-modern">
+                        <label><input type="radio" name="time" value="short"><span>&lt; 20 dk</span></label>
+                        <label><input type="radio" name="time" value="medium"><span>20-45 dk</span></label>
+                        <label><input type="radio" name="time" value="long"><span>&gt; 45 dk</span></label>
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    <p>Günün hedefi nedir?</p>
+                    <div class="radio-group-modern">
+                        <label><input type="radio" name="goal" value="high-protein"><span>Yüksek Protein</span></label>
+                        <label><input type="radio" name="goal" value="low-calorie"><span>Düşük Kalori</span></label>
+                        <label><input type="radio" name="goal" value="none"><span>Keyifli Bir Öğün</span></label>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn">Öneri Al</button>
+                    <button type="reset" id="reset-btn">Temizle</button>
+                </div>
+            </form>
+
+            <div class="recipe-link-container">
+                <a href="#" id="view-all-recipes-btn">Tüm Tarifleri Görüntüle &rarr;</a>
             </div>
 
-            <button type="submit" id="submit-btn">Öneri Al</button>
-        </form>
-
-        <div class="recipe-link-container">
-            <a href="#" id="view-all-recipes-btn">Tüm Tarifleri Görüntüle &rarr;</a>
+            <div id="result-container" class="hidden"></div>
         </div>
 
-        <div id="result-container" class="hidden">
-            <h2 id="result-title"></h2>
-            <div id="result-content"></div>
+        <div class="weekly-planner-container">
+            <h2>Haftalık Planım</h2>
+            <div class="weekly-grid" id="weekly-grid">
+                <div class="day-card" data-day="monday"><h3>Pazartesi</h3><div class="meal-slot"></div></div>
+                <div class="day-card" data-day="tuesday"><h3>Salı</h3><div class="meal-slot"></div></div>
+                <div class="day-card" data-day="wednesday"><h3>Çarşamba</h3><div class="meal-slot"></div></div>
+                <div class="day-card" data-day="thursday"><h3>Perşembe</h3><div class="meal-slot"></div></div>
+                <div class="day-card" data-day="friday"><h3>Cuma</h3><div class="meal-slot"></div></div>
+                <div class="day-card" data-day="saturday"><h3>Cumartesi</h3><div class="meal-slot"></div></div>
+                <div class="day-card" data-day="sunday"><h3>Pazar</h3><div class="meal-slot"></div></div>
+            </div>
         </div>
     </main>
 
     <div id="recipe-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <button class="modal-close" id="modal-close-btn">&times;</button>
-            <h2>Tüm Tarifler</h2>
-            <div id="all-recipes-list"></div>
+            <div class="modal-header">
+                <h2>Tüm Tarifler</h2>
+                <input type="text" id="recipe-search-input" placeholder="Tariflerde ara...">
+            </div>
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="all-recipes">Tüm Tarifler</button>
+                <button class="tab-btn" data-tab="favorites">Favorilerim</button>
+            </div>
+            <div id="all-recipes-list" class="tab-content active"></div>
+            <div id="favorites-list" class="tab-content"></div>
         </div>
     </div>
 
