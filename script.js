@@ -1,72 +1,116 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('planner-form');
-  const timeInput = document.getElementById('time-input');
-  const radios = Array.from(form.elements['restriction']);
-  const submitBtn = document.getElementById('get-recommendation');
-  const spinner = document.getElementById('spinner');
-  const resultContainer = document.getElementById('result-container');
-  const suggestionEl = document.getElementById('suggestion');
-  const shoppingListEl = document.getElementById('shopping-list');
+    const form = document.getElementById('meal-form');
+    const resultContainer = document.getElementById('result-container');
+    const resultTitle = document.getElementById('result-title');
+    const resultDescription = document.getElementById('result-description');
+    const resultList = document.getElementById('result-list');
 
-  // Enable submit only when time is valid
-  timeInput.addEventListener('input', () => {
-    const val = parseInt(timeInput.value, 10);
-    submitBtn.disabled = !(Number.isInteger(val) && val > 0);
-  });
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        const dietaryRestriction = document.getElementById('dietary-restriction').value.trim();
+        const ingredientsAvailable = document.querySelector('input[name="ingredients"]:checked');
+        const timeAvailable = document.getElementById('time-available').value;
+        const nutritionGoal = document.querySelector('input[name="goal"]:checked');
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    resultContainer.classList.add('hidden');
-    spinner.classList.remove('hidden');
+        if (!ingredientsAvailable || !timeAvailable || !nutritionGoal) {
+            showError("Please fill out all required fields (Ingredients, Time, and Goal).");
+            return; 
+        }
 
-    const time = parseInt(timeInput.value, 10);
-    const restriction = radios.find(r => r.checked)?.value || 'None';
+        if (ingredientsAvailable.value === 'no') {
+            generateShoppingList(dietaryRestriction);
+            return;
+        }
 
-    // Fake delay for UX
-    await new Promise(res => setTimeout(res, 300));
+        const A = true;
+        const T = parseInt(timeAvailable, 10) <= 30;
+        const P = nutritionGoal.value === 'high-protein';
+        const C = nutritionGoal.value !== 'low-calorie'; 
 
-    const { meal, items } = getPlan(time, restriction);
-    suggestionEl.textContent = meal;
-    shoppingListEl.innerHTML = '';
-    items.forEach(i => {
-      const li = document.createElement('li');
-      li.textContent = i;
-      shoppingListEl.append(li);
+        if (T) { 
+            if (P) {
+                suggestHighProteinSnack(dietaryRestriction);
+            } 
+            else {
+                suggestLightSnack(dietaryRestriction);
+            }
+        } else {
+            if (C) {
+                suggestRegularMeal(dietaryRestriction);
+            }
+            else {
+                suggestLowCalorieMeal(dietaryRestriction);
+            }
+        }
     });
 
-    spinner.classList.add('hidden');
-    resultContainer.classList.remove('hidden');
-  });
+    function showResult(title, description, listItems = [], type = 'success') {
+        resultContainer.className = '';
+        resultContainer.classList.add(type);
 
-  function getPlan(minutes, restriction) {
-    // Simple example logic
-    if (minutes < 15) {
-      return {
-        meal: 'Grab a quick fruit & yogurt snack',
-        items: ['Yogurt', 'Mixed berries', `${restriction} granola`]
-      };
-    } else if (minutes < 30) {
-      return {
-        meal: `Make a ${restriction.toLowerCase()} wrap`,
-        items: [
-          'Tortilla wraps',
-          'Lettuce',
-          'Tomato',
-          `${restriction} protein (e.g. falafel or canned tuna)`,
-          'Hummus'
-        ]
-      };
-    } else {
-      return {
-        meal: `Cook a ${restriction.toLowerCase()} stir-fry`,
-        items: [
-          'Rice or noodles',
-          'Mixed veggies',
-          `${restriction} protein`,
-          'Soy sauce',
-          'Garlic & ginger'
-        ]
-      };
+        resultTitle.textContent = title;
+        resultDescription.textContent = description;
+        
+        resultList.innerHTML = '';
+        if (listItems.length > 0) {
+            listItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                resultList.appendChild(li);
+            });
+        }
+        
+        resultContainer.classList.remove('hidden');
     }
-  }
+
+    function showError(message) {
+        showResult('Error', message, [], 'error');
+    }
+
+    function generateShoppingList(diet) {
+        const dietPrefix = diet ? `${diet} ` : '';
+        showResult(
+            'Generate Shopping List',
+            `You don't have the ingredients. Here is a sample shopping list for a simple ${dietPrefix}meal:`,
+            [`${dietPrefix}Pasta`, 'Cherry Tomatoes', 'Basil', 'Garlic', 'Olive Oil'],
+            'info'
+        );
+    }
+
+    function suggestHighProteinSnack(diet) {
+        const dietPrefix = diet ? `(${diet}) ` : '';
+        showResult(
+            'High-Protein Snack Suggestion',
+            `With limited time, a high-protein snack is a great choice. Try this ${dietPrefix}option:`,
+            ['Yogurt Parfait with Nuts & Berries', 'A handful of Almonds', 'Falafel with Hummus']
+        );
+    }
+
+    function suggestLightSnack(diet) {
+        const dietPrefix = diet ? `(${diet}) ` : '';
+        showResult(
+            'Light Snack Suggestion',
+            `You have a short amount of time, so here is a quick and light ${dietPrefix}snack idea:`,
+            ['Avocado Toast', 'Apple Slices with Peanut Butter', 'Rice Cakes with Cottage Cheese']
+        );
+    }
+
+    function suggestRegularMeal(diet) {
+        const dietPrefix = diet ? `(${diet}) ` : '';
+        showResult(
+            'Regular Meal Recipe',
+            `You have enough time and no strict calorie limits. Here is a satisfying ${dietPrefix}meal:`,
+            ['Fried Chicken and Veggies', 'Beef Stir-fry with Rice', 'Classic Lasagna']
+        );
+    }
+    
+    function suggestLowCalorieMeal(diet) {
+        const dietPrefix = diet ? `(${diet}) ` : '';
+        showResult(
+            'Low-Calorie Recipe',
+            `Since you're mindful of calories, here is a healthy and delicious ${dietPrefix}meal suggestion:`,
+            ['Grilled Zucchini Salad with Lemon-Herb Vinaigrette', 'Baked Salmon with Asparagus', 'Quinoa Bowl with Roasted Vegetables']
+        );
+    }
 });
