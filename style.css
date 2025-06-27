@@ -1,16 +1,27 @@
-/* --- FONT VE TEMEL AYARLAR --- */
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Montserrat:wght@400;500;700&display=swap');
-
+/* --- TEMA RENKLERİ VE FONT AYARLARI --- */
 :root {
-    --primary-color: #E67E22; /* Canlı Turuncu */
-    --secondary-color: #2C3E50; /* Koyu Mavi/Gri */
-    --background-color: #FDF6E3; /* Krem Rengi Arka Plan */
-    --text-color: #34495E; /* Koyu Gri Metin */
-    --light-gray: #ECF0F1; /* Açık Gri */
-    --white: #FFFFFF;
-    
+    --primary-color: #E67E22;
+    --secondary-color: #2C3E50;
+    --background-color: #FDF6E3;
+    --surface-color: #FFFFFF;
+    --text-color: #34495E;
+    --subtle-text-color: #7f8c8d;
+    --border-color: #ECF0F1;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+
     --font-heading: 'Lora', serif;
     --font-body: 'Montserrat', sans-serif;
+}
+
+body.dark-theme {
+    --primary-color: #F39C12;
+    --secondary-color: #ECF0F1;
+    --background-color: #2C3E50;
+    --surface-color: #34495E;
+    --text-color: #ECF0F1;
+    --subtle-text-color: #95A5A6;
+    --border-color: #4A637A;
+    --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -23,244 +34,131 @@ body {
     font-family: var(--font-body);
     background-color: var(--background-color);
     color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 1.5rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- ANA PLANLAYICI KUTUSU --- */
+/* --- ANA YAPI VE HEADER --- */
+.main-header {
+    background-color: var(--surface-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.3s;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header h1 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+}
+.main-header h1 sup { font-size: 0.5em; }
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+/* --- PLANLAYICI KUTUSU VE FORM --- */
 .planner-container {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     padding: 2rem 2.5rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px var(--shadow-color);
     width: 100%;
     max-width: 650px;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
-
-header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-}
-
-header h1 {
-    font-family: var(--font-heading);
-    color: var(--secondary-color);
-    font-size: 2.25rem;
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    font-size: 1rem;
-    color: #7f8c8d;
-}
-
-/* --- FORM ELEMANLARI --- */
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label, .form-group p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    font-size: 0.95rem;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-}
-
-input[type="number"], select {
+.intro-text { color: var(--subtle-text-color); text-align: center; margin-bottom: 2rem; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label, .form-group p { font-weight: 600; margin-bottom: 0.75rem; font-size: 0.95rem; }
+select, input[type="text"] {
     width: 100%;
     padding: 0.8rem 1rem;
-    border: 2px solid var(--light-gray);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
-    font-size: 1rem;
-    font-family: var(--font-body);
-    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
-
-input[type="number"]:focus, select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.15);
-}
-
-/* Modern Radio Butonlar */
-.radio-group-modern {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.radio-group-modern label {
-    flex-grow: 1;
-}
-
-.radio-group-modern input[type="radio"] {
-    display: none;
-}
-
+.radio-group-modern { display: flex; gap: 1rem; flex-wrap: wrap; }
+.radio-group-modern label { flex-grow: 1; }
+.radio-group-modern input[type="radio"] { display: none; }
 .radio-group-modern span {
     display: block;
     padding: 0.8rem 1rem;
-    border: 2px solid var(--light-gray);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .radio-group-modern input[type="radio"]:checked + span {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: var(--white, #fff);
     border-color: var(--primary-color);
-    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
 }
+.form-actions { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+button { font-family: var(--font-body); font-weight: 700; border-radius: 8px; cursor: pointer; padding: 1rem; border: none; transition: all 0.2s; }
+#submit-btn { background: var(--primary-color); color: var(--white, #fff); }
+#reset-btn { background: var(--border-color); color: var(--subtle-text-color); }
 
-/* Ana Buton */
-button[type="submit"] {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white);
-    background: linear-gradient(45deg, var(--primary-color), #f39c12);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.3s;
-}
-
-button[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
-}
-
-/* --- SONUÇ VE LİNKLER --- */
-.recipe-link-container {
-    text-align: center;
-    margin-top: 2rem;
-}
-
-#view-all-recipes-btn {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-}
-
+/* --- SONUÇ KARTI --- */
 #result-container {
     margin-top: 2rem;
     padding: 1.5rem;
-    border-radius: 8px;
-    background-color: #F8F9F9;
-    border-left: 5px solid var(--primary-color);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    display: none; /* Başlangıçta gizli */
-}
-
-#result-container.visible {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#result-title {
-    font-family: var(--font-heading);
-}
-
-#result-content h3 {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    color: var(--secondary-color);
-}
-#result-content ul { list-style-position: inside; }
-#result-content p { line-height: 1.6; }
-
-/* --- MODAL (TÜM TARİFLER) STİLLERİ --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(44, 62, 80, 0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s;
-    z-index: 1000;
-}
-
-.modal-overlay:not(.hidden) {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 700px;
-    max-height: 85vh;
-    overflow-y: auto;
-    position: relative;
-    transform: scale(0.9);
-    transition: transform 0.4s ease;
-}
-
-.modal-overlay:not(.hidden) .modal-content {
-    transform: scale(1);
-}
-
-.modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: var(--light-gray);
-    cursor: pointer;
-    transition: color 0.3s;
-}
-.modal-close:hover { color: var(--text-color); }
-
-#all-recipes-list h3 {
-    font-family: var(--font-heading);
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-}
-#all-recipes-list p {
-    padding: 0.5rem;
-    border-radius: 5px;
-    transition: background-color 0.2s;
-}
-#all-recipes-list p:hover {
+    border-radius: 10px;
     background-color: var(--background-color);
-    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    display: none;
 }
+#result-container.visible { display: block; opacity: 1; transform: scale(1); }
+#result-container img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; }
+#result-container h2 { font-family: var(--font-heading); margin-bottom: 1rem; }
+#result-container .result-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.result-actions button { flex-grow: 1; font-size: 0.9rem; padding: 0.7rem; }
+.result-actions .fav-btn { background-color: var(--secondary-color); color: var(--white, #fff); }
+.result-actions .plan-btn { background-color: var(--subtle-text-color); color: var(--surface-color); }
+.day-selector { display: none; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.day-selector button { background-color: var(--border-color); font-size: 0.75rem; padding: 0.5rem; }
 
-/* --- RESPONSIVE TASARIM --- */
-@media (max-width: 680px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-    body { padding: 1rem; }
-    .planner-container { padding: 1.5rem; }
-}
+/* --- HAFTALIK PLANLAYICI --- */
+.weekly-planner-container { background-color: var(--surface-color); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px var(--shadow-color); width: 100%; max-width: 1200px; }
+.weekly-planner-container h2 { font-family: var(--font-heading); text-align: center; margin-bottom: 2rem; }
+.weekly-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+.day-card { background-color: var(--background-color); border-radius: 10px; padding: 1rem; }
+.day-card h3 { font-family: var(--font-body); font-size: 1rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+.meal-slot .planned-meal { font-size: 0.9rem; background: var(--surface-color); padding: 0.5rem; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; }
+.meal-slot .remove-meal-btn { background: none; border: none; color: var(--subtle-text-color); cursor: pointer; font-size: 1.2rem; }
+
+/* --- MODAL VE TEMA DEĞİŞTİRİCİ --- */
+.modal-overlay { /* ...öncekiyle aynı... */ z-index: 1000; position: fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(44, 62, 80, 0.85); display:flex; justify-content:center; align-items:center; opacity:0; visibility:hidden; transition: all 0.4s ease; }
+.modal-overlay:not(.hidden) { opacity: 1; visibility: visible; }
+.modal-content { /* ...öncekiyle aynı... */ background: var(--surface-color); padding: 2rem; border-radius: 15px; width: 90%; max-width: 700px; max-height: 85vh; overflow-y: auto; position: relative; }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+#recipe-search-input { width: 50%; }
+.modal-tabs { display: flex; border-bottom: 2px solid var(--border-color); margin-bottom: 1rem; }
+.tab-btn { background: none; border: none; padding: 1rem; cursor: pointer; color: var(--subtle-text-color); position: relative; }
+.tab-btn.active { color: var(--primary-color); font-weight: 700; }
+.tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--primary-color); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.theme-switcher { /* ... stil kodları ... */ }
+.theme-toggle-checkbox { display: none; }
+.theme-toggle-label { width: 50px; height: 25px; background-color: var(--secondary-color); border-radius: 25px; display: block; position: relative; cursor: pointer; transition: background-color 0.3s; }
+.theme-toggle-label::after { content: ''; width: 21px; height: 21px; background: var(--white, #fff); border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: transform 0.3s; }
+.theme-toggle-checkbox:checked + .theme-toggle-label { background-color: var(--primary-color); }
+.theme-toggle-checkbox:checked + .theme-toggle-label::after { transform: translateX(25px); }
